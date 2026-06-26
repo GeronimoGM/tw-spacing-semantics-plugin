@@ -172,6 +172,15 @@ Pin a specific token to an exact value.
 
 ### Add new tokens
 
+If you need more tokens you can add them.
+
+````css
+@theme {
+	--space-4xs: calc(var(--spacing) * 0.25)
+	--space-12xl: calc(var(--spacing) * 512)
+}
+```
+
 ## Responsive variants
 
 All semantic utilities participate in Tailwind v4's full variant system with no extra configuration:
