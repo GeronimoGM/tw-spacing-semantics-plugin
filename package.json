@@ -1,0 +1,54 @@
+{
+	"name": "tw-spacing-semantics-plugin",
+	"version": "1.0.0",
+	"description": "Semantic spacing utilities for Tailwind CSS v4 — isolated p-*, m-*, and gap-* classes built on --space-* custom properties. Fully independent from Tailwind's native spacing scale.",
+	"style": "./src/index.css",
+	"exports": {
+		".": "./src/index.css",
+		"./index.css": "./src/index.css"
+	},
+	"files": [
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"type": "module",
+	"scripts": {
+		"test": "vitest"
+	},
+	"keywords": [
+		"tailwindcss",
+		"tailwindcss-plugin",
+		"tailwind-v4",
+		"tailwind-css-v4",
+		"spacing",
+		"semantic-spacing",
+		"design-tokens",
+		"design-system",
+		"css-custom-properties",
+		"padding",
+		"margin",
+		"gap",
+		"refactoring-ui"
+	],
+	"author": "Gerónimo Gonzalez Martino",
+	"license": "MIT",
+	"peerDependencies": {
+		"tailwindcss": "^4.0.0"
+	},
+	"devDependencies": {
+		"@csstools/postcss-minify": "^3.0.0",
+		"@tailwindcss/postcss": "^4.3.1",
+		"postcss": "^8.5.15",
+		"tailwindcss": "^4.0.0",
+		"vitest": "^4.1.9"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GeronimoGM/tw-spacing-semantics-plugin.git"
+	},
+	"bugs": {
+		"url": "https://github.com/GeronimoGM/tw-spacing-semantics-plugin/issues"
+	},
+	"homepage": "https://github.com/GeronimoGM/tw-spacing-semantics-plugin"
+}

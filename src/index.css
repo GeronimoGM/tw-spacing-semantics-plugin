@@ -1,0 +1,106 @@
+/**
+ * tw-spacing-semantic-plugin
+ * Semantic spacing utilities for Tailwind CSS v4 — isolated p-*, m-*, and gap-* classes built on --space-* custom properties. Fully independent from Tailwind's native spacing scale.
+ * 
+ * @author Gerónimo Gonzalez Martino
+ * @license MIT
+ */
+
+@theme inline {
+	--space-none: 0;
+	--space-3xs: calc(var(--spacing) * 0.5);
+	--space-2xs: calc(var(--spacing));
+	--space-xs: calc(var(--spacing) * 2);
+	--space-sm: calc(var(--spacing) * 3);
+	--space-md: calc(var(--spacing) * 4);
+	--space-lg: calc(var(--spacing) * 6);
+	--space-xl: calc(var(--spacing) * 8);
+	--space-2xl: calc(var(--spacing) * 12);
+	--space-3xl: calc(var(--spacing) * 16);
+	--space-4xl: calc(var(--spacing) * 24);
+	--space-5xl: calc(var(--spacing) * 32);
+	--space-6xl: calc(var(--spacing) * 48);
+	--space-7xl: calc(var(--spacing) * 64);
+	--space-8xl: calc(var(--spacing) * 96);
+	--space-9xl: calc(var(--spacing) * 128);
+	--space-10xl: calc(var(--spacing) * 192);
+	--space-11xl: calc(var(--spacing) * 256);
+}
+
+/* Padding */
+@utility p-* {
+	padding: --value(--space-*);
+}
+@utility px-* {
+	padding-inline: --value(--space-*);
+}
+@utility py-* {
+	padding-block: --value(--space-*);
+}
+@utility pt-* {
+	padding-top: --value(--space-*);
+}
+@utility pr-* {
+	padding-right: --value(--space-*);
+}
+@utility pb-* {
+	padding-bottom: --value(--space-*);
+}
+@utility pl-* {
+	padding-left: --value(--space-*);
+}
+
+/* Margin */
+@utility m-* {
+	margin: --value(--space-*);
+}
+@utility mx-* {
+	margin-inline: --value(--space-*);
+}
+@utility my-* {
+	margin-block: --value(--space-*);
+}
+@utility mt-* {
+	margin-top: --value(--space-*);
+}
+@utility mr-* {
+	margin-right: --value(--space-*);
+}
+@utility mb-* {
+	margin-bottom: --value(--space-*);
+}
+@utility ml-* {
+	margin-left: --value(--space-*);
+}
+@utility -m-* {
+	margin: calc(--value(--space-*) * -1);
+}
+@utility -mx-* {
+	margin-inline: calc(--value(--space-*) * -1);
+}
+@utility -my-* {
+	margin-block: calc(--value(--space-*) * -1);
+}
+@utility -mt-* {
+	margin-top: calc(--value(--space-*) * -1);
+}
+@utility -mr-* {
+	margin-right: calc(--value(--space-*) * -1);
+}
+@utility -mb-* {
+	margin-bottom: calc(--value(--space-*) * -1);
+}
+@utility -ml-* {
+	margin-left: calc(--value(--space-*) * -1);
+}
+
+/* Gap */
+@utility gap-* {
+	gap: --value(--space-*);
+}
+@utility gap-x-* {
+	column-gap: --value(--space-*);
+}
+@utility gap-y-* {
+	row-gap: --value(--space-*);
+}
