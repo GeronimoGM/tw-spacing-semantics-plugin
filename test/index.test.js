@@ -158,4 +158,124 @@ describe('tw-spacing-semantics-plugin', () => {
 
 		expect(css).toContain('.p-12xl{padding:var(--space-12xl)}');
 	});
+
+	describe('inset utilities', () => {
+		it('generates positive inset utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="top-sm right-md bottom-lg left-xl"></div>',
+			});
+
+			expect(css).toContain('.top-sm');
+			expect(css).toContain('.right-md');
+			expect(css).toContain('.bottom-lg');
+			expect(css).toContain('.left-xl');
+		});
+
+		it('generates negative inset utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="-top-md -right-lg -bottom-xl -left-sm"></div>',
+			});
+
+			expect(css).toContain('.-top-md');
+			expect(css).toContain('.-right-lg');
+			expect(css).toContain('.-bottom-xl');
+			expect(css).toContain('.-left-sm');
+		});
+
+		it('supports responsive variants for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:top-xs lg:left-3xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:top-xs');
+			expect(css).toContain('.lg\\:left-3xl');
+		});
+
+		it('supports state variants for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="hover:top-lg focus:right-sm"></div>',
+			});
+
+			expect(css).toContain('.hover\\:top-lg');
+			expect(css).toContain('.focus\\:right-sm');
+		});
+
+		it('supports stacked variants for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:hover:top-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:hover\\:top-2xl');
+		});
+
+		it('uses a custom --space-* token for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="top-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 99px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:99px');
+			expect(css).toContain('.top-md');
+		});
+
+		it('works alongside core Tailwind utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="flex top-lg left-md"></div>',
+			});
+
+			expect(css).toContain('.flex');
+			expect(css).toContain('.top-lg');
+			expect(css).toContain('.left-md');
+		});
+
+		it('derives inset spacing from --spacing', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="top-lg"></div>',
+				inline: `
+					@theme {
+						--spacing: 10px;
+					}
+				`,
+			});
+
+			expect(css).toContain('.top-lg');
+			expect(css).toContain('calc(var(--spacing) * 6)');
+		});
+
+		it('allows overriding semantic token independently for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="bottom-xl"></div>',
+				inline: `
+					@theme {
+						--spacing: 10px;
+						--space-xl: 77px;
+					}
+				`,
+			});
+
+			expect(css).toContain('.bottom-xl');
+			expect(css).toContain('--space-xl:77px');
+		});
+
+		it('shares semantic tokens with padding/margin/gap', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="top-sm p-sm m-sm gap-sm"></div>',
+				inline: `
+					@theme {
+						--space-sm: 15px;
+					}
+				`,
+			});
+
+			expect(css).toContain('.top-sm');
+			expect(css).toContain('.p-sm');
+			expect(css).toContain('.m-sm');
+			expect(css).toContain('.gap-sm');
+			expect(css).toContain('15px');
+		});
+	});
 });

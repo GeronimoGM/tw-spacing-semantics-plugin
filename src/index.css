@@ -94,6 +94,32 @@
 	margin-left: calc(--value(--space-*) * -1);
 }
 
+/* Inset (top/right/bottom/left) */
+@utility top-* {
+	top: --value(--space-*);
+}
+@utility right-* {
+	right: --value(--space-*);
+}
+@utility bottom-* {
+	bottom: --value(--space-*);
+}
+@utility left-* {
+	left: --value(--space-*);
+}
+@utility -top-* {
+	top: calc(--value(--space-*) * -1);
+}
+@utility -right-* {
+	right: calc(--value(--space-*) * -1);
+}
+@utility -bottom-* {
+	bottom: calc(--value(--space-*) * -1);
+}
+@utility -left-* {
+	left: calc(--value(--space-*) * -1);
+}
+
 /* Gap */
 @utility gap-* {
 	gap: --value(--space-*);

@@ -1,6 +1,6 @@
 # tw-spacing-semantics-plugin
 
-A production-ready **Tailwind CSS v4** plugin that adds a semantic spacing layer — `p-md`, `gap-xl`, `mx-2xl` — built on an isolated `--space-*` custom property system that never touches Tailwind's own spacing scale.
+A production-ready **Tailwind CSS v4** plugin that adds a semantic spacing layer — `p-md`, `gap-xl`, `mx-2xl`, `top-lg` — built on an isolated `--space-*` custom property system that never touches Tailwind's own spacing scale.
 
 ---
 
@@ -19,7 +19,7 @@ The default token scale is based on the concepts of [**Refactoring UI**](https:/
 ## Features
 
 - Fully isolated `--space-*` namespace — zero interference with Tailwind internals
-- Generates **only** `p-*`, `m-*`, `-m-*` and `gap-*` utilities
+- Generates **only** `p-*`, `m-*`, `-m-*`, `top-*`/`right-*`/`bottom-*`/`left-*` and `gap-*` utilities
 - Two-level customization: global scale factor + individual token override
 - Native Tailwind v4 responsive variants (`sm:px-xl`, `md:gap-2xl`)
 - CSS-first, ESM, npm-publishable
@@ -107,6 +107,15 @@ Every token is available across spacing axes.
 
 > Gap does NOT support negative values in CSS.
 
+---
+
+### Inset (positioning)
+
+| Classes generated                                              |
+| -------------------------------------------------------------- |
+| `top-{t}` `right-{t}` `bottom-{t}` `left-{t}`                  |
+| `-top-{t}` `-right-{t}` `-bottom-{t}` `-left-{t}`              |
+
 Only the classes you actually used will appear in the final CSS.
 
 ---
@@ -134,6 +143,15 @@ Only the classes you actually used will appear in the final CSS.
 
 <!-- Horizontal negative margin -->
 <div class="-mx-xl"></div>
+
+<!-- Semantic inset positioning -->
+<div class="top-md left-lg">…</div>
+
+<!-- Negative inset -->
+<div class="-top-sm -right-md">…</div>
+
+<!-- Responsive inset -->
+<div class="top-sm md:top-lg xl:top-2xl">…</div>
 
 <!-- Mixed layout: Tailwind structural + semantic spacing -->
 <div class="max-w-xl mx-auto px-md py-lg">
