@@ -94,7 +94,7 @@
 	margin-left: calc(--value(--space-*) * -1);
 }
 
-/* Inset (top/right/bottom/left) */
+/* Inset (top/right/bottom/left/inset/inset-inline/inset-block) */
 @utility top-* {
 	top: --value(--space-*);
 }
@@ -118,6 +118,24 @@
 }
 @utility -left-* {
 	left: calc(--value(--space-*) * -1);
+}
+@utility inset-* {
+	inset: --value(--space-*);
+}
+@utility inset-x-* {
+	inset-inline: --value(--space-*);
+}
+@utility inset-y-* {
+	inset-block: --value(--space-*);
+}
+@utility -inset-* {
+	inset: calc(--value(--space-*) * -1);
+}
+@utility -inset-x-* {
+	inset-inline: calc(--value(--space-*) * -1);
+}
+@utility -inset-y-* {
+	inset-block: calc(--value(--space-*) * -1);
 }
 
 /* Gap */

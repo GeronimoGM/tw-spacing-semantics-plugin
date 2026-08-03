@@ -113,6 +113,8 @@ Every token is available across spacing axes.
 
 | Classes generated                                              |
 | -------------------------------------------------------------- |
+| `inset-{t}` `inset-x-{t}` `inset-y-{t}`                        |
+| `-inset-{t}` `-inset-x-{t}` `-inset-y-{t}`                     |
 | `top-{t}` `right-{t}` `bottom-{t}` `left-{t}`                  |
 | `-top-{t}` `-right-{t}` `-bottom-{t}` `-left-{t}`              |
 
@@ -147,8 +149,11 @@ Only the classes you actually used will appear in the final CSS.
 <!-- Semantic inset positioning -->
 <div class="top-md left-lg">…</div>
 
+<!-- Inset shorthand -->
+<div class="inset-lg inset-x-md inset-y-sm">…</div>
+
 <!-- Negative inset -->
-<div class="-top-sm -right-md">…</div>
+<div class="-top-sm -right-md -inset-x-xl">…</div>
 
 <!-- Responsive inset -->
 <div class="top-sm md:top-lg xl:top-2xl">…</div>

@@ -277,5 +277,48 @@ describe('tw-spacing-semantics-plugin', () => {
 			expect(css).toContain('.gap-sm');
 			expect(css).toContain('15px');
 		});
+
+		it('generates inset utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="inset-sm inset-x-lg inset-y-xl"></div>',
+			});
+
+			expect(css).toContain('.inset-sm');
+			expect(css).toContain('.inset-x-lg');
+			expect(css).toContain('.inset-y-xl');
+		});
+
+		it('generates negative inset utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="-inset-md -inset-x-xl -inset-y-sm"></div>',
+			});
+
+			expect(css).toContain('.-inset-md');
+			expect(css).toContain('.-inset-x-xl');
+			expect(css).toContain('.-inset-y-sm');
+		});
+
+		it('supports responsive variants for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:inset-sm lg:inset-x-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:inset-sm');
+			expect(css).toContain('.lg\\:inset-x-2xl');
+		});
+
+		it('uses a custom --space-* token for inset', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="inset-x-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 42px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:42px');
+			expect(css).toContain('.inset-x-md');
+		});
 	});
 });
