@@ -1,6 +1,6 @@
 {
 	"name": "tw-spacing-semantics-plugin",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "Semantic spacing utilities for Tailwind CSS v4 — isolated p-*, m-*, and gap-* classes built on --space-* custom properties. Fully independent from Tailwind's native spacing scale.",
 	"style": "./src/index.css",
 	"exports": {
