@@ -49,6 +49,18 @@
 @utility pl-* {
 	padding-left: --value(--space-*);
 }
+@utility ps-* {
+	padding-inline-start: --value(--space-*);
+}
+@utility pe-* {
+	padding-inline-end: --value(--space-*);
+}
+@utility pbs-* {
+	padding-block-start: --value(--space-*);
+}
+@utility pbe-* {
+	padding-block-end: --value(--space-*);
+}
 
 /* Margin */
 @utility m-* {
@@ -72,6 +84,18 @@
 @utility ml-* {
 	margin-left: --value(--space-*);
 }
+@utility ms-* {
+	margin-inline-start: --value(--space-*);
+}
+@utility me-* {
+	margin-inline-end: --value(--space-*);
+}
+@utility mbs-* {
+	margin-block-start: --value(--space-*);
+}
+@utility mbe-* {
+	margin-block-end: --value(--space-*);
+}
 @utility -m-* {
 	margin: calc(--value(--space-*) * -1);
 }
@@ -92,6 +116,18 @@
 }
 @utility -ml-* {
 	margin-left: calc(--value(--space-*) * -1);
+}
+@utility -ms-* {
+	margin-inline-start: calc(--value(--space-*) * -1);
+}
+@utility -me-* {
+	margin-inline-end: calc(--value(--space-*) * -1);
+}
+@utility -mbs-* {
+	margin-block-start: calc(--value(--space-*) * -1);
+}
+@utility -mbe-* {
+	margin-block-end: calc(--value(--space-*) * -1);
 }
 
 /* Inset (top/right/bottom/left/inset/inset-inline/inset-block) */
@@ -147,4 +183,38 @@
 }
 @utility gap-y-* {
 	row-gap: --value(--space-*);
+}
+
+/* Space between children */
+@utility space-x-* {
+	& > :not(:last-child) {
+		margin-inline-end: --value(--space-*);
+	}
+	& > :not(:first-child) {
+		margin-inline-start: --value(--space-*);
+	}
+}
+@utility space-y-* {
+	& > :not(:last-child) {
+		margin-block-end: --value(--space-*);
+	}
+	& > :not(:first-child) {
+		margin-block-start: --value(--space-*);
+	}
+}
+@utility -space-x-* {
+	& > :not(:last-child) {
+		margin-inline-end: calc(--value(--space-*) * -1);
+	}
+	& > :not(:first-child) {
+		margin-inline-start: calc(--value(--space-*) * -1);
+	}
+}
+@utility -space-y-* {
+	& > :not(:last-child) {
+		margin-block-end: calc(--value(--space-*) * -1);
+	}
+	& > :not(:first-child) {
+		margin-block-start: calc(--value(--space-*) * -1);
+	}
 }

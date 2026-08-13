@@ -19,7 +19,7 @@ The default token scale is based on the concepts of [**Refactoring UI**](https:/
 ## Features
 
 - Fully isolated `--space-*` namespace — zero interference with Tailwind internals
-- Generates **only** `p-*`, `m-*`, `-m-*`, `top-*`/`right-*`/`bottom-*`/`left-*` and `gap-*` utilities
+- Generates **only** `p-*`, `m-*`, `-m-*`, `top-*`/`right-*`/`bottom-*`/`left-*`, `gap-*`, `space-x-*`/`space-y-*`, their negative variants and logical (`ms-*`, `pe-*`, `mbs-*`, …) utilities
 - Two-level customization: global scale factor + individual token override
 - Native Tailwind v4 responsive variants (`sm:px-xl`, `md:gap-2xl`)
 - CSS-first, ESM, npm-publishable
@@ -82,9 +82,10 @@ Every token is available across spacing axes.
 
 ### Padding
 
-| Classes generated                                             |
-| ------------------------------------------------------------- |
-| `p-{t}` `px-{t}` `py-{t}` `pt-{t}` `pr-{t}` `pb-{t}` `pl-{t}` |
+| Classes generated                                                       |
+| ----------------------------------------------------------------------- |
+| `p-{t}` `px-{t}` `py-{t}` `pt-{t}` `pr-{t}` `pb-{t}` `pl-{t}`           |
+| `ps-{t}` `pe-{t}` `pbs-{t}` `pbe-{t}` (logical)                         |
 
 > Padding does NOT support negative values.
 
@@ -92,10 +93,13 @@ Every token is available across spacing axes.
 
 ### Margin and negative margin
 
-| Classes generated                                                    |
-| -------------------------------------------------------------------- |
-| `m-{t}` `mx-{t}` `my-{t}` `mt-{t}` `mr-{t}` `mb-{t}` `ml-{t}`        |
-| `-m-{t}` `-mx-{t}` `-my-{t}` `-mt-{t}` `-mr-{t}` `-mb-{t}` `-ml-{t}` |
+| Classes generated                                                                              |
+| ---------------------------------------------------------------------------------------------- |
+| `m-{t}` `mx-{t}` `my-{t}` `mt-{t}` `mr-{t}` `mb-{t}` `ml-{t}` `ms-{t}` `me-{t}` `mbs-{t}` `mbe-{t}` |
+| `-m-{t}` `-mx-{t}` `-my-{t}` `-mt-{t}` `-mr-{t}` `-mb-{t}` `-ml-{t}`                           |
+| `-ms-{t}` `-me-{t}` `-mbs-{t}` `-mbe-{t}` (logical)                                            |
+
+> Logical margins (`ms`/`me`/`mbs`/`mbe`) follow the writing direction of the document, so they flip automatically in RTL layouts. Their negative variants are also supported.
 
 ---
 
@@ -106,6 +110,17 @@ Every token is available across spacing axes.
 | `gap-{t}` `gap-x-{t}` `gap-y-{t}` |
 
 > Gap does NOT support negative values in CSS.
+
+---
+
+### Space between children
+
+| Classes generated                    |
+| ------------------------------------ |
+| `space-x-{t}` `space-y-{t}`         |
+| `-space-x-{t}` `-space-y-{t}`       |
+
+> Applies the semantic token as spacing between sibling elements (margin-based, like Tailwind's native `space-x-*`/`space-y-*`). Negative variants collapse the space between siblings.
 
 ---
 
@@ -162,6 +177,22 @@ Only the classes you actually used will appear in the final CSS.
 <div class="max-w-xl mx-auto px-md py-lg">
 	<!-- max-w-xl → max-width: var(--container-xl) -->
 	<!-- px-md    → padding-inline: var(--space-md) -->
+</div>
+
+<!-- Logical padding (flips in RTL) -->
+<div class="ps-md pe-lg">…</div>
+
+<!-- Logical margin -->
+<div class="ms-auto me-md">…</div>
+
+<!-- Spacing between children -->
+<ul class="space-y-md">
+	<li>…</li>
+	<li>…</li>
+</ul>
+<div class="flex space-x-lg">
+	<button>…</button>
+	<button>…</button>
 </div>
 ```
 

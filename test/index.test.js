@@ -321,4 +321,160 @@ describe('tw-spacing-semantics-plugin', () => {
 			expect(css).toContain('.inset-x-md');
 		});
 	});
+
+	describe('logical padding utilities', () => {
+		it('generates logical padding utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="ps-sm pe-md pbs-lg pbe-xl"></div>',
+			});
+
+			expect(css).toContain('.ps-sm');
+			expect(css).toContain('.pe-md');
+			expect(css).toContain('.pbs-lg');
+			expect(css).toContain('.pbe-xl');
+		});
+
+		it('supports responsive variants for logical padding', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:ps-md lg:pe-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:ps-md');
+			expect(css).toContain('.lg\\:pe-2xl');
+		});
+
+		it('uses a custom --space-* token for logical padding', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="pbs-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 33px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:33px');
+			expect(css).toContain('.pbs-md');
+		});
+	});
+
+	describe('logical margin utilities', () => {
+		it('generates logical margin utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="ms-sm me-md mbs-lg mbe-xl"></div>',
+			});
+
+			expect(css).toContain('.ms-sm');
+			expect(css).toContain('.me-md');
+			expect(css).toContain('.mbs-lg');
+			expect(css).toContain('.mbe-xl');
+		});
+
+		it('generates negative logical margin utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="-ms-md -me-lg -mbs-xl -mbe-sm"></div>',
+			});
+
+			expect(css).toContain('.-ms-md');
+			expect(css).toContain('.-me-lg');
+			expect(css).toContain('.-mbs-xl');
+			expect(css).toContain('.-mbe-sm');
+		});
+
+		it('supports responsive variants for logical margin', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:ms-lg lg:me-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:ms-lg');
+			expect(css).toContain('.lg\\:me-2xl');
+		});
+
+		it('uses a custom --space-* token for logical margin', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="mbe-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 77px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:77px');
+			expect(css).toContain('.mbe-md');
+		});
+	});
+
+	describe('space between children utilities', () => {
+		it('generates space-x utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="space-x-md"></div>',
+			});
+
+			expect(css).toContain('.space-x-md');
+		});
+
+		it('generates space-y utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="space-y-lg"></div>',
+			});
+
+			expect(css).toContain('.space-y-lg');
+		});
+
+		it('supports responsive variants for space utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:space-x-xl lg:space-y-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:space-x-xl');
+			expect(css).toContain('.lg\\:space-y-2xl');
+		});
+
+		it('uses a custom --space-* token for space utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="space-x-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 55px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:55px');
+			expect(css).toContain('.space-x-md');
+		});
+
+		it('generates negative space utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="-space-x-md -space-y-lg"></div>',
+			});
+
+			expect(css).toContain('.-space-x-md');
+			expect(css).toContain('.-space-y-lg');
+		});
+
+		it('supports responsive variants for negative space utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="md:-space-x-xl lg:-space-y-2xl"></div>',
+			});
+
+			expect(css).toContain('.md\\:-space-x-xl');
+			expect(css).toContain('.lg\\:-space-y-2xl');
+		});
+
+		it('uses a custom --space-* token for negative space utilities', async () => {
+			const css = await generatePluginCSS({
+				content: '<div class="-space-y-md"></div>',
+				inline: `
+					@theme {
+						--space-md: 66px;
+					}
+				`,
+			});
+
+			expect(css).toContain('--space-md:66px');
+			expect(css).toContain('.-space-y-md');
+		});
+	});
 });
